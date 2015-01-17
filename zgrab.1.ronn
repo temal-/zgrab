@@ -1,0 +1,127 @@
+zgrab(1) - A TLS Banner grabber and port checker
+================================================
+
+## SYNOPSIS
+
+zgrab [ -port <port> ] [ -input-file <infile> ] [ -output-file <outfile> ]
+    [ OPTIONS... ]
+
+## DESCRIPTION
+
+*ZGrab* is a network tool for grabbing banners of various services (such as
+HTTP(S), IMAP, POP3, SMTP) and output/save them in JSON.
+
+## OPTIONS
+
+### GENERAL
+
+   * `-banners`
+     Turn on banner grabbing.
+     Defaults to: `false`.
+
+   * `-ca-file=<cafile>`
+     // TODO: What kind of format is expected here? One filename? A list? If
+              so, what kind of seperator is used?
+     A file containing a list of trusted root certificates in PEM format.
+
+   * `-cbc-only`
+     Switch to turn on the sending of CBC only.
+     Defaults to: `false`.
+
+   * `-data=<datafile>`
+     The contents of the matching file is the message which gets sent to the
+     destination.
+     E.g.:
+        GET / %s
+     Where "%s" will be replaced with the destination IP.
+
+   * `-encoding=<encoding>`
+     One of "string", "hex", "base64" to define the output format of the
+     banner.
+     Defaults to: `string`.
+
+   * `-heartbleed`
+     Turn on heartbleed vulnerability checking. This appends some more
+     information to the output JSON.
+     Defaults to: `false`.
+
+   * `-input-file=<infile>`
+     Filename containing IP addresses. One per line.
+     Defaults to: `-` for stdin.
+
+   * `-interface=<intname>`
+     The network interface to send and receive data.
+     Defaults to: `""`.
+
+   * `-log-file=<logfile>`
+     The file to send logs to.
+     Defaults to: `-` for stderr.
+
+   * `-metadata-file=<metafile>`
+     The output file to send banner metadata to.
+     Defaults to: `-` for stdout.
+     
+   * `-modbus`
+     Send some modbus data.
+     Defaults to: `false`.
+
+   * `-output-file=<outfile>`
+     The file to send the output to.
+     Defaults to: `-` for stdout.
+
+   * `-port=<port>`
+     The port to grab data from.
+     Defaults to: `""`.
+
+   * `-senders=<sendnum>`
+     The number of coroutines to use for grabbing banners.
+     Defaults to: `1000`.
+
+   * `-starttls`
+     Enables *STARTTLS* before negotiating.
+     Defaults to: `false`.
+
+   * `-timeout=<seconds>`
+     The time in seconds till a connection is abandoned.
+     Defaults to: `10`.
+
+   * `-tls`
+     Grab banners over TLS.
+     Defaults to: `false`.
+
+   * `-tls`
+     The maximum version of TLS to use.
+     Defaults to: `""`.
+
+   * `-udp`
+     Grab over UDP instead of TCP.
+     Defaults to: `false`.
+
+### IMAP
+
+   * `-imap`
+     Turn on IMAP conform STARTTLS behaviour.
+     Defaults to: `false`.
+    
+### POP3
+
+   * `-pop3`
+     Turn on POP3 conform STARTTLS behaviour.
+     Defaults to: `false`.
+
+### SMTP
+   
+   * `-ehlo=<domain>`
+     Send an `EHLO` with the specified domain.
+     Defaults to: `""`.
+
+   * `-smtp`
+     Turn on SMTP conform STARTTLS behaviour.
+     Defaults to: `false`.
+
+   * `-smtp-help`
+     Send a SMTP help message.
+     Defaults to: `false`.
+
+## SEE ALSO
+   zmap(1), ztee(1)
